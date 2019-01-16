@@ -22,7 +22,7 @@ class LetterServiceTest extends TestCase
         $date = (new \Carbon\Carbon())->year(2019);
 
         for ($n = 1; $n <= 5; $n++) {
-            $latest    = $service->generateNumber($date->year, $latest);
+            $latest    = $service->generateNumber($date->year, 'A', $latest);
 
             $results[] = $latest;
         }
@@ -49,7 +49,7 @@ class LetterServiceTest extends TestCase
         $date = (new \Carbon\Carbon())->year(2018);
 
         for ($n = 1; $n <= 3; $n++) {
-            $latest    = $service->generateNumber($date->year, $latest);
+            $latest    = $service->generateNumber($date->year, 'A', $latest);
 
             $results[] = $latest;
         }
@@ -58,7 +58,35 @@ class LetterServiceTest extends TestCase
         $date = (new \Carbon\Carbon())->year(2019);
 
         for ($n = 1; $n <= 3; $n++) {
-            $latest    = $service->generateNumber($date->year, $latest);
+            $latest    = $service->generateNumber($date->year, 'A', $latest);
+
+            $results[] = $latest;
+        }
+
+        $this->assertEquals($expectedResults, $results);
+    }
+
+    public function testThree(): void
+    {
+        $expectedResults = [
+            '2019-A-0001',
+            '2019-B-0002',
+            '2019-C-0003',
+            '2019-D-0004',
+            '2019-E-0005',
+        ];
+
+        $service = new LetterService();
+
+        $latest  = null;
+        $results = [];
+
+        $date = (new \Carbon\Carbon())->year(2019);
+
+        $letters = ['A', 'B', 'C', 'D', 'E'];
+
+        foreach ($letters as $letter) {
+            $latest    = $service->generateNumber($date->year, $letter, $latest);
 
             $results[] = $latest;
         }

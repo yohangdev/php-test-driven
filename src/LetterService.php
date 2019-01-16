@@ -2,7 +2,7 @@
 
 class LetterService
 {
-    public function generateNumber($year, $latest)
+    public function generateNumber($year, $letter, $latest)
     {
         if ($latest === null) {
             $number = 0;
@@ -20,6 +20,6 @@ class LetterService
 
         $number++;
 
-        return sprintf('%s-A-%s', $year, str_pad($number, 4, '0', STR_PAD_LEFT));
+        return sprintf('%s-%s-%s', $year, $letter, str_pad($number, 4, '0', STR_PAD_LEFT));
     }
 }
