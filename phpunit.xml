@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
-<phpunit>
+<phpunit colors="true" bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="Unit Test">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-clover" target="./clover.xml"/>
-    </logging>
 </phpunit>
